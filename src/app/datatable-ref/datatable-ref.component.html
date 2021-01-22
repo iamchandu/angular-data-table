@@ -1,0 +1,12 @@
+<table style='width:100%'>
+    <tr>
+        <th *ngFor="let item of propertys['info'];">{{item.value}}</th>
+        <th *ngIf="propertys['actions'].length">Actions</th>
+    </tr>
+    <tr *ngFor="let tt of data;">
+        <td *ngFor="let item of propertys['info'];">{{tt[item.key]}}</td>
+        <td *ngIf="propertys['actions'].length">
+            <b *ngFor="let ii of propertys['actions'];"><button (click)="actionInfo(ii, tt[propertys.primaryKey])">{{ii}}</button></b>
+        </td>
+    </tr>
+</table>
