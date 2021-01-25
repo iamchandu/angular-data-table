@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-datatable',
@@ -7,19 +6,19 @@ import { ApiService } from '../api.service';
   styleUrls: ['./datatable.component.css']
 })
 export class DatatableComponent implements OnInit {
-  @Input() mainApiName: string;
-  @Input() propertys: string;
+  @Input() mainApiName;
+  @Input() propertys;
   data;
-  constructor(private api: ApiService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.api[this.mainApiName]().subscribe(res=>{
+    this.mainApiName(10,20).subscribe(res=>{
       this.data = res;
     })
   }
 
   actionInfo(apiName, id) {
-    this.api[apiName](id).subscribe(res=>{
+    apiName(id).subscribe(res=>{
       this.data = [res];
     })
   }

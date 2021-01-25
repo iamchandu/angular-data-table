@@ -11,7 +11,7 @@ import { ApiService } from './api.service';
 export class AppComponent {
   title = 'datatable1';
   data;
-  apiName = 'getData';
+  apiName;
   propertyes = {
     primaryKey: 'id',
     actions: ['view'],
@@ -23,7 +23,7 @@ export class AppComponent {
   };
   propertyes1 = {
     primaryKey: 'id',
-    actions: [{name: 'view', api:"getDataId"}],
+    actions: [{name: 'view', api: (id) => this.api.getDataId(id)}],
       info: [
         {key:'id', value: 'ID'},
         {key:'title', value: 'Title'},
@@ -34,6 +34,7 @@ export class AppComponent {
     this.api.getData().subscribe(res=>{
       this.data = res;
     });
+    this.apiName = () => this.api.getData();
   }
 
   /** ref */
